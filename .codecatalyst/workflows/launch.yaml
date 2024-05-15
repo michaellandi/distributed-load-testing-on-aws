@@ -1,0 +1,48 @@
+Name: launch
+SchemaVersion: '1.0'
+Triggers:
+  - Type: PUSH
+    Branches:
+      - main
+Compute:
+  Type: EC2
+  Fleet: Linux.x86-64.Large
+Actions:
+  source:
+    Identifier: aws/build@v1
+    Inputs:
+      Sources:
+        - WorkflowSource
+    Outputs:
+      AutoDiscoverReports:
+        Enabled: false
+        ReportNamePrefix: rpt
+      Artifacts:
+        - Name: src
+          Files:
+            - '**/*'
+    Configuration:
+      Steps:
+        - Run: ls -la
+  deploy-prod:
+    Identifier: aws/build@v1
+    Inputs:
+      Sources: []
+      Artifacts:
+        - src
+      Variables:
+        - Name: LAUNCH_OPTIONS_region
+    Outputs:
+      AutoDiscoverReports:
+        Enabled: false
+        ReportNamePrefix: rpt
+    Configuration:
+      Steps:
+        - Run: yum install -y nodejs make git
+        - Run: chmod u+x deployment/build-s3-dist.sh
+        - Run: deployment/build-s3-dist.sh
+      Container:
+        Image: public.ecr.aws/amazonlinux/amazonlinux:2023
+        Registry: ECR
+    Environment:
+      Name: prod_environment
