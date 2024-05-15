@@ -40,7 +40,7 @@ Actions:
       Steps:
         - Run: yum install -y nodejs make git
         - Run: chmod u+x deployment/build-s3-dist.sh
-        - Run: deployment/build-s3-dist.sh
+        - Run: deployment/build-s3-dist.sh solutions trademarked-solution-name v1.0.0
       Container:
         Image: public.ecr.aws/amazonlinux/amazonlinux:2023
         Registry: ECR
