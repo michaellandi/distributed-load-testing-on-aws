@@ -9,3 +9,13 @@ options:
   - us-west-2
   - us-east-1
   - us-east-2
+- key: ExistingVPCId
+  optional: false
+- key: ExistingSubnetA
+  optional: false
+- key: ExistingSubnetB
+  optional: false
+- key: AdminName
+  optional: false
+- key: AdminEmail
+  optional: false
