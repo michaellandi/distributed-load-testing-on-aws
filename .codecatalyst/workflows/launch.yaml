@@ -31,7 +31,7 @@ Actions:
         - Run: export SOLUTION_NAME=distributed-load-testing-on-aws
         - Run: export VERSION=v3.2.8
         - Run: export PUBLIC_ECR_REGISTRY=public.ecr.aws/aws-solutions
-        - Run: export PUBLIC_ECR_TAG=v3.2.5
+        - Run: export PUBLIC_ECR_TAG=v3.2.8
         - Run: ./build-s3-dist.sh $BUCKET_PREFIX distributed-load-testing-on-aws v3.2.8
         - Run: echo aws s3api create-bucket --bucket $BUCKET_NAME  --region $REGION
             --create-bucket-configuration LocationConstraint=$REGION
