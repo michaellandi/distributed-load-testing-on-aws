@@ -31,7 +31,7 @@ Actions:
       Artifacts:
         - src
       Variables:
-        - Name: LAUNCH_OPTIONS_region
+        - Name: region
     Outputs:
       AutoDiscoverReports:
         Enabled: false
