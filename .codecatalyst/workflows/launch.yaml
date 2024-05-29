@@ -1,5 +1,5 @@
 Name: launch
-SchemaVersion: '1.0'
+SchemaVersion: "1.0"
 Triggers:
   - Type: PUSH
     Branches:
@@ -8,41 +8,49 @@ Compute:
   Type: EC2
   Fleet: Linux.x86-64.Large
 Actions:
-  source:
+  build:
     Identifier: aws/build@v1
     Inputs:
       Sources:
         - WorkflowSource
-    Outputs:
-      AutoDiscoverReports:
-        Enabled: false
-        ReportNamePrefix: rpt
-      Artifacts:
-        - Name: src
-          Files:
-            - '**/*'
-    Configuration:
-      Steps:
-        - Run: ls -la
-  deploy-prod:
-    Identifier: aws/build@v1
-    Inputs:
-      Sources: []
-      Artifacts:
-        - src
       Variables:
         - Name: region
+        - Name: bucketPrefix
     Outputs:
       AutoDiscoverReports:
         Enabled: false
         ReportNamePrefix: rpt
     Configuration:
       Steps:
-        - Run: yum install -y nodejs make git
+        - Run: yum install -y nodejs make git zip findutils
         - Run: chmod u+x deployment/build-s3-dist.sh
-        - Run: deployment/build-s3-dist.sh solutions trademarked-solution-name v1.0.0
+        - Run: cd deployment
+        - Run: export REGION=$region
+        - Run: export BUCKET_PREFIX=$bucketPrefix
+        - Run: export BUCKET_NAME=$BUCKET_PREFIX-$REGION
+        - Run: export SOLUTION_NAME=distributed-load-testing-on-aws
+        - Run: export VERSION=v3.2.8
+        - Run: export PUBLIC_ECR_REGISTRY=public.ecr.aws/aws-solutions
+        - Run: export PUBLIC_ECR_TAG=v3.2.5
+        - Run: ./build-s3-dist.sh $BUCKET_PREFIX distributed-load-testing-on-aws v3.2.8
+        - Run: echo aws s3api create-bucket --bucket $BUCKET_NAME  --region $REGION
+            --create-bucket-configuration LocationConstraint=$REGION
+        - Run: aws s3 sync ./regional-s3-assets
+            s3://$BUCKET_NAME/distributed-load-testing-on-aws/v3.2.8/
+        - Run: aws s3 sync ./global-s3-assets
+            s3://$BUCKET_NAME/distributed-load-testing-on-aws/v3.2.8/
       Container:
-        Image: public.ecr.aws/amazonlinux/amazonlinux:2023
-        Registry: ECR
+        Registry: CODECATALYST
+        Image: CodeCatalystLinux_x86_64:2024_03
+    Environment:
+      Name: prod_environment
+  deploy:
+    Identifier: aws/cfn-deploy@v1
+    Configuration:
+      parameter-overrides: ExistingVPCId=PLACEHOLDER,ExistingSubnetA=PLACEHOLDER,ExistingSubnetB=PLACEHOLDER,AdminName=PLACEHOLDER,AdminEmail=PLACEHOLDER
+      capabilities: CAPABILITY_IAM,CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND
+      template: https://dlt-coca-demo-us-west-2.s3.us-west-2.amazonaws.com/distributed-load-testing-on-aws/v3.2.8/distributed-load-testing-on-aws.template
+      region: us-west-2
+      name: dlt2
     Environment:
       Name: prod_environment
