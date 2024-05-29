@@ -9,6 +9,8 @@ options:
   - us-west-2
   - us-east-1
   - us-east-2
+- key: bucketPrefix
+  optional: false
 - key: ExistingVPCId
   optional: false
 - key: ExistingSubnetA
