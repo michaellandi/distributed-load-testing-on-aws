@@ -45,6 +45,8 @@ Actions:
     Environment:
       Name: prod_environment
   deploy:
+    DependsOn:
+      - build
     Identifier: aws/cfn-deploy@v1
     Configuration:
       parameter-overrides: ExistingVPCId=PLACEHOLDER,ExistingSubnetA=PLACEHOLDER,ExistingSubnetB=PLACEHOLDER,AdminName=PLACEHOLDER,AdminEmail=PLACEHOLDER
