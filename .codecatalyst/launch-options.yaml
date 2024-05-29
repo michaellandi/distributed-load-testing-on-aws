@@ -2,7 +2,7 @@ options:
 - key: region
   value: us-west-2
   displayName: AWS Region
-  description: AWS Region to deploy the solution to.
+  description: The AWS Region to deploy the solution to.
   displayType: region
   possibleValues:
   - us-west-1
@@ -10,14 +10,34 @@ options:
   - us-east-1
   - us-east-2
 - key: bucketPrefix
+  displayName: S3 Bucket Prefix
+  description: The S3 Bucket to use for staging resource deployments
+  displayType: string
   optional: false
 - key: ExistingVPCId
+  displayName: Existing VPC Identifier
+  description: The VPC to attach EC2 load test instances to.
+  displayType: string
   optional: false
 - key: ExistingSubnetA
+  displayName: Existing Subnet A Identifier
+  description: The first subnet to attach EC2 load test instances to.
+  displayType: string
   optional: false
 - key: ExistingSubnetB
+  displayName: Existing Subnet A Identifier
+  description: The second subnet to attach EC2 load test instances to.
+  displayType: string
   optional: false
 - key: AdminName
+  value: noreply
+  displayName: Administrator Name
+  description: The name of the administrative user.
+  displayType: string
   optional: false
 - key: AdminEmail
+  value: noreply@amazon.com
+  displayName: Administrator Email
+  description: The email address of the administrative user.
+  displayType: string
   optional: false
