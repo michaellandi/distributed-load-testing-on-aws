@@ -1,0 +1,11 @@
+options:
+- key: region
+  value: us-west-2
+  displayName: AWS Region
+  description: AWS Region to deploy the solution to.
+  displayType: region
+  possibleValues:
+  - us-west-1
+  - us-west-2
+  - us-east-1
+  - us-east-2
