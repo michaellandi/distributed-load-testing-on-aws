@@ -41,3 +41,8 @@ options:
     description: The email address of the administrative user.
     displayType: string
     optional: false
+  - key: Deployment
+    value:
+      name: 'prod'
+      environmentType: 'PRODUCTION'
+    displayType: environment
