@@ -42,5 +42,6 @@ options:
     displayType: string
     optional: false
   - key: Deployment
+    displayType: environment
     environmentOptions:
       name: prod
