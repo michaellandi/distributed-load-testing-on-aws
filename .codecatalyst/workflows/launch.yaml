@@ -16,6 +16,7 @@ Actions:
       Variables:
         - Name: region
         - Name: bucketPrefix
+        - Name: LAUNCH_OPTIONS_bucketPrefix
     Outputs:
       AutoDiscoverReports:
         Enabled: false
