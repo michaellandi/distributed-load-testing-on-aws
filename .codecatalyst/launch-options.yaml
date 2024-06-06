@@ -43,7 +43,7 @@ options:
     optional: false
   - key: Deployment
     value:
-      name: prod
+      name: prod_environment
       environmentType: PRODUCTION
     displayType: environment
     environmentOptions:
