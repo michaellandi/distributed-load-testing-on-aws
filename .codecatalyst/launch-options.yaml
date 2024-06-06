@@ -43,6 +43,13 @@ options:
     optional: false
   - key: Deployment
     value:
-      name: 'prod'
-      environmentType: 'PRODUCTION'
+      name: prod
+      environmentType: PRODUCTION
     displayType: environment
+    environmentOptions:
+      accountConnections:
+        - name: launch
+          roles:
+            - name: deploy
+              capabilities:
+                - '*'
