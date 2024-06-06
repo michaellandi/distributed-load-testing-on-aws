@@ -44,6 +44,7 @@ options:
   - key: Deployment
     value: prod
     environmentOptions:
+      name: prod
       accountConnections:
         - name: Deploy role
           roles:
