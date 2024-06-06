@@ -44,7 +44,3 @@ options:
   - key: Deployment
     environmentOptions:
       name: prod
-      accountConnections:
-        - name: Deploy role
-          roles:
-            - name: launch-role
