@@ -48,7 +48,7 @@ options:
     displayType: environment
     environmentOptions:
       accountConnections:
-        - name: launch
+        - name: awsAccountConnection
           roles:
             - name: launchRole
               capabilities:
