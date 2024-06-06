@@ -50,6 +50,6 @@ options:
       accountConnections:
         - name: launch
           roles:
-            - name: deploy
+            - name: launchRole
               capabilities:
                 - '*'
