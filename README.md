@@ -1,6 +1,6 @@
 # Distributed Load Testing on AWS
 
-[![Launch](https://img.shields.io/badge/Launch%20with%20CodeCatalyst-%F0%9F%9A%80-8A2BE2)](https://codecatalyst.aws/launch?blueprintName=%40amazon-codecatalyst%2Fblueprints.launch-blueprint&publisher=a6eeaa59-1ec1-49c7-9265-cef724f56fe1&options=%7B%22sourceRepository%22%3A%22https%3A%2F%2Fgithub.com%2Fmichaellandi%2Fdistributed-load-testing-on-aws%22%2C%22destinationRepositoryName%22%3A%22distributed-load-testing-on-aws%22%7D))
+[![Launch](https://img.shields.io/badge/Launch%20with%20CodeCatalyst-%F0%9F%9A%80-8A2BE2)](https://codecatalyst.aws/launch?blueprintName=%40amazon-codecatalyst%2Fblueprints.launch-blueprint&publisher=a6eeaa59-1ec1-49c7-9265-cef724f56fe1&options=%7B%22sourceRepository%22%3A%22https%3A%2F%2Fgithub.com%2Fmichaellandi%2Fdistributed-load-testing-on-aws%22%2C%22destinationRepositoryName%22%3A%22distributed-load-testing-on-aws%22%7D)
 
 The Distributed Load Testing Solution leverages managed, highly available and highly scalable AWS services to effortlessly create and simulate thousands of connected users generating a selected amount of transactions per second, originating from up to 5 simultaneous AWS regions. As a result, developers can understand the behavior of their applications at scale and at load to identify any bottleneck problems before they deploy to Production.
 
