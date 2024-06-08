@@ -14,6 +14,11 @@ options:
     description: The S3 Bucket to use for staging resource deployments
     displayType: string
     optional: false
+  - key: publicEcrRegistry
+    displayName: Public ECR Repository Name
+    description: Specify a public ECR registry if you'd like to customize the test image
+    value: ''
+    optional: true
   - key: ExistingVPCId
     displayName: Existing VPC Identifier
     description: The VPC to attach EC2 load test instances to.
@@ -46,6 +51,8 @@ options:
       name: prod_environment
       environmentType: PRODUCTION
     displayType: environment
+    displayName: Deployment Details
+    description: Select an AWS Account Connection to deploy this solution to.
     environmentOptions:
       accountConnections:
         - name: awsAccountConnection
