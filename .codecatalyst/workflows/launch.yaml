@@ -1,5 +1,5 @@
 Name: launch
-SchemaVersion: "1.0"
+SchemaVersion: '1.0'
 Triggers:
   - Type: PUSH
     Branches:
@@ -16,12 +16,18 @@ Actions:
       Variables:
         - Name: region
         - Name: bucketPrefix
+        - Name: publicEcrRegistry
+          Value:
     Outputs:
       AutoDiscoverReports:
         Enabled: false
         ReportNamePrefix: rpt
     Configuration:
       Steps:
+        - Run: chmod u+x ./.codecatalyst/provision-ecr.sh
+        - Run: export PUBLIC_ECR_REGISTRY=`./.codecatalyst/provision-ecr.sh`
+        - Run: echo $PUBLIC_ECR_REGISTRY
+        - Run: export PUBLIC_ECR_TAG=v3.2.8
         - Run: yum install -y nodejs make git zip findutils
         - Run: chmod u+x deployment/build-s3-dist.sh
         - Run: cd deployment
@@ -30,10 +36,9 @@ Actions:
         - Run: export BUCKET_NAME=$BUCKET_PREFIX-$REGION
         - Run: export SOLUTION_NAME=distributed-load-testing-on-aws
         - Run: export VERSION=v3.2.8
-        - Run: export PUBLIC_ECR_REGISTRY=public.ecr.aws/aws-solutions
-        - Run: export PUBLIC_ECR_TAG=v3.2.8
         - Run: ./build-s3-dist.sh $BUCKET_PREFIX distributed-load-testing-on-aws v3.2.8
-        - Run: echo aws s3api create-bucket --bucket $BUCKET_NAME  --region $REGION
+        - Run:
+            echo aws s3api create-bucket --bucket $BUCKET_NAME  --region $REGION
             --create-bucket-configuration LocationConstraint=$REGION
         - Run: aws s3 sync ./regional-s3-assets
             s3://$BUCKET_NAME/distributed-load-testing-on-aws/v3.2.8/
