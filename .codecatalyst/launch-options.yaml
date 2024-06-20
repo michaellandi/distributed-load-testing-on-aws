@@ -23,17 +23,17 @@ options:
     displayName: Existing VPC Identifier
     description: The VPC to attach EC2 load test instances to.
     displayType: string
-    optional: false
+    optional: true
   - key: ExistingSubnetA
     displayName: Existing Subnet A Identifier
     description: The first subnet to attach EC2 load test instances to.
     displayType: string
-    optional: false
+    optional: true
   - key: ExistingSubnetB
     displayName: Existing Subnet A Identifier
     description: The second subnet to attach EC2 load test instances to.
     displayType: string
-    optional: false
+    optional: true
   - key: AdminName
     value: noreply
     displayName: Administrator Name
