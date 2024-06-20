@@ -4,6 +4,12 @@ set -e
 
 if [ -z "$publicEcrRegistry" ]; then
     echo "public.ecr.aws/aws-solutions";
+    return 0;
+fi
+
+if [[ "$publicEcrRegistry" = "public.ecr.aws/aws-solutions" ]]; then
+    echo "public.ecr.aws/aws-solutions";
+    return 0;
 fi
 
 resp=$(aws ecr-public describe-repositories --region us-east-1 --query "repositories[?repositoryName==\`${publicEcrRegistry}\`] | [0].repositoryName" | jq --raw-output);
