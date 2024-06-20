@@ -54,7 +54,7 @@ Actions:
       - build
     Identifier: aws/cfn-deploy@v1
     Configuration:
-      parameter-overrides: ExistingVPCId=PLACEHOLDER,ExistingSubnetA=PLACEHOLDER,ExistingSubnetB=PLACEHOLDER,AdminName=PLACEHOLDER,AdminEmail=PLACEHOLDER
+      parameter-overrides: ExistingVPCId=,ExistingSubnetA=,ExistingSubnetB=,AdminName=PLACEHOLDER,AdminEmail=PLACEHOLDER
       capabilities: CAPABILITY_IAM,CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND
       template: https://dlt-coca-demo-us-west-2.s3.us-west-2.amazonaws.com/distributed-load-testing-on-aws/v3.2.8/distributed-load-testing-on-aws.template
       region: us-west-2
