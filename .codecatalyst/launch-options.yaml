@@ -17,7 +17,6 @@ options:
   - key: publicEcrRegistry
     displayName: Public ECR Repository Name
     description: Specify a public ECR registry if you'd like to customize the test image
-    value: ''
     optional: true
   - key: ExistingVPCId
     displayName: Existing VPC Identifier
