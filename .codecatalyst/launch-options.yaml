@@ -14,11 +14,34 @@ options:
     description: The S3 Bucket to use for staging resource deployments
     displayType: string
     optional: false
+  - key: Deployment
+    value:
+      name: prod_environment
+      environmentType: PRODUCTION
+    displayType: environment
+    displayName: Deployment Details
+    description: Select an AWS Account Connection to deploy this solution to.
+    environmentOptions:
+      accountConnections:
+        - name: awsAccountConnection
+          roles:
+            - name: launchRole
+              capabilities:
+                - '*'
   - key: publicEcrRegistry
     displayName: Public ECR Repository Name
     description: Specify a public ECR registry if you'd like to customize the test image
-    optional: true
-    value: ''
+    optional: false
+    value: 'public.ecr.aws/aws-solutions'
+  - key: publicImageTag
+    displayName: Public image tag
+    description: Specify a public image tag if you'd like to customize the test image
+    optional: false
+    value: 'v3.2.8'
+  - key: solutionVersion
+    displayName: Solution Version
+    description: Version of the solution
+    value: 'v3.2.8'
   - key: ExistingVPCId
     displayName: Existing VPC Identifier
     description: The VPC to attach EC2 load test instances to.
@@ -46,17 +69,3 @@ options:
     description: The email address of the administrative user.
     displayType: string
     optional: false
-  - key: Deployment
-    value:
-      name: prod_environment
-      environmentType: PRODUCTION
-    displayType: environment
-    displayName: Deployment Details
-    description: Select an AWS Account Connection to deploy this solution to.
-    environmentOptions:
-      accountConnections:
-        - name: awsAccountConnection
-          roles:
-            - name: launchRole
-              capabilities:
-                - '*'
