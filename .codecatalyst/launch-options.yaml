@@ -18,6 +18,7 @@ options:
     displayName: Public ECR Repository Name
     description: Specify a public ECR registry if you'd like to customize the test image
     optional: true
+    value: ''
   - key: ExistingVPCId
     displayName: Existing VPC Identifier
     description: The VPC to attach EC2 load test instances to.
