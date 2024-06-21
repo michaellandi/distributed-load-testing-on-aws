@@ -5,14 +5,12 @@ set -e
 if [ -z "$publicEcrRegistry" ]; then
     echo "public.ecr.aws/aws-solutions";
     return 0;
-fi
-
-if [[ "$publicEcrRegistry" = "public.ecr.aws/aws-solutions" ]]; then
+elif [[ "$publicEcrRegistry" = "public.ecr.aws/aws-solutions" ]]; then
     echo "public.ecr.aws/aws-solutions";
     return 0;
 fi
 
-resp=$(aws ecr-public describe-repositories --region us-east-1 --query "repositories[?repositoryName==\`${publicEcrRegistry}\`] | [0].repositoryName" | jq --raw-output);
+resp=$(aws ecr-public describe-repositories --region us-east-1 --query "repositories[?repositoryName==\`${publicEcrRegistry}\`] | [0].repositoryUri" | jq --raw-output);
 
 if [[ "$resp" = "null" ]]; then
     registry=$(aws ecr-public create-repository --repository-name $publicEcrRegistry --region us-east-1 | jq --raw-output .repository.repositoryUri)

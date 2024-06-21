@@ -24,7 +24,7 @@ Actions:
         ReportNamePrefix: rpt
     Configuration:
       Steps:
-        - Run: chmod u+x ./.codecatalyst/provision-ecr.sh
+        - Run: chmod u+x ./.codecatalyst/*.sh
         - Run: export PUBLIC_ECR_REGISTRY=`publicEcrRegistry="{{publicEcrRegistry}}" ./.codecatalyst/provision-ecr.sh`
         - Run: echo Using registry "$PUBLIC_ECR_REGISTRY"
         - Run: export PUBLIC_ECR_TAG=$publicImageTag
@@ -44,6 +44,7 @@ Actions:
             s3://$BUCKET_NAME/distributed-load-testing-on-aws/$solutionVersion/
         - Run: aws s3 sync ./global-s3-assets
             s3://$BUCKET_NAME/distributed-load-testing-on-aws/$solutionVersion/
+        - Run: cd ../ && ./.codecatalyst/deploy-image.sh
       Container:
         Registry: CODECATALYST
         Image: CodeCatalystLinux_x86_64:2024_03
@@ -57,7 +58,7 @@ Actions:
       parameter-overrides: ExistingVPCId=,ExistingSubnetA=,ExistingSubnetB=,AdminName=PLACEHOLDER,AdminEmail=PLACEHOLDER
       capabilities: CAPABILITY_IAM,CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND
       template: https://{{bucketPrefix}}-{{region}}.s3.{{region}}.amazonaws.com/distributed-load-testing-on-aws/{{solutionVersion}}/distributed-load-testing-on-aws.template
-      region: {{region}}
+      region: { { region } }
       name: distributed-load-testing
     Environment:
       Name: prod_environment
