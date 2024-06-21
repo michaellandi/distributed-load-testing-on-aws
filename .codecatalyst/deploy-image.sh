@@ -12,8 +12,8 @@ else
     cd deployment/ecr/distributed-load-testing-on-aws-load-tester
     
     docker build -t distributed-load-testing-on-aws-load-tester .
-    docker tag distributed-load-testing-on-aws-load-tester:latest "$PUBLIC_ECR_REGISTRY:latest"
-    docker push "$PUBLIC_ECR_REGISTRY:latest"
+    docker tag distributed-load-testing-on-aws-load-tester:latest "$PUBLIC_ECR_REGISTRY:$publicImageTag"
+    docker push "$PUBLIC_ECR_REGISTRY:$publicImageTag"
 fi
 
 
