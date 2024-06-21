@@ -58,7 +58,7 @@ Actions:
       parameter-overrides: ExistingVPCId=,ExistingSubnetA=,ExistingSubnetB=,AdminName=PLACEHOLDER,AdminEmail=PLACEHOLDER
       capabilities: CAPABILITY_IAM,CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND
       template: https://{{bucketPrefix}}-{{region}}.s3.{{region}}.amazonaws.com/distributed-load-testing-on-aws/{{solutionVersion}}/distributed-load-testing-on-aws.template
-      region: { { region } }
+      region: {{ region }}
       name: distributed-load-testing
     Environment:
       Name: prod_environment
