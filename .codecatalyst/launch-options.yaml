@@ -42,6 +42,7 @@ options:
                 - '*'
   - key: publicEcrRegistry
     validationRegex: '^[a-z][a-z0-9-_]*$'
+    validationMessage: 'Repository name must start with a letter and can only contain lowercase letters, numbers, hyphens, underscores, and forward slashes.'
     displayName: Public ECR Repository Name
     description: Specify a public ECR registry if you'd like to customize the test image
     optional: true
