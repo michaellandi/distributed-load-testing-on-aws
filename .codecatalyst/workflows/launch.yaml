@@ -17,7 +17,6 @@ Actions:
         - Name: region
         - Name: bucketPrefix
         - Name: publicImageTag
-        - Name: publicEcrRegistry
         - Name: solutionVersion
     Outputs:
       AutoDiscoverReports:
@@ -26,8 +25,8 @@ Actions:
     Configuration:
       Steps:
         - Run: chmod u+x ./.codecatalyst/provision-ecr.sh
-        - Run: export PUBLIC_ECR_REGISTRY=`./.codecatalyst/provision-ecr.sh`
-        - Run: echo $PUBLIC_ECR_REGISTRY
+        - Run: export PUBLIC_ECR_REGISTRY=`publicEcrRegistry="{{publicEcrRegistry}}" ./.codecatalyst/provision-ecr.sh`
+        - Run: echo Using registry "$PUBLIC_ECR_REGISTRY"
         - Run: export PUBLIC_ECR_TAG=$publicImageTag
         - Run: yum install -y nodejs make git zip findutils
         - Run: chmod u+x deployment/build-s3-dist.sh
