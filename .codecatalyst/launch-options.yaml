@@ -31,8 +31,8 @@ options:
   - key: publicEcrRegistry
     displayName: Public ECR Repository Name
     description: Specify a public ECR registry if you'd like to customize the test image
-    optional: true
-    value: ''
+    optional: false
+    value: 'test'
   - key: publicImageTag
     displayName: Public image tag
     description: Specify a public image tag if you'd like to customize the test image
