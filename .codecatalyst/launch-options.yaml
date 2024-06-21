@@ -41,6 +41,7 @@ options:
               capabilities:
                 - '*'
   - key: publicEcrRegistry
+    validationRegex: '^[a-z][a-z0-9-_]*$'
     displayName: Public ECR Repository Name
     description: Specify a public ECR registry if you'd like to customize the test image
     optional: true
